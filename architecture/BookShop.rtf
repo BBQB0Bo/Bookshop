@@ -192,13 +192,101 @@ Cum nu avem atribute neprime rezulta \cf2 ca\cf1  Favorite[I,C] \cf0 este in for
 \cf1\b Deci cum toate tabelele sunt in forma normala 3NF  si baza de date era in 1NF si 2NF, rezulta ca baza de date este in \fs32 3NF.\fs22\par
 \cf0\i\par
 \cf1\ul\fs28 Demonstrare BCNF:\par
-\ulnone\fs22\par
-\cf0\b0\i0\par
+\cf0\ulnone\b0\i0\fs22\par
+\i\par
+\i0\lang9 ->\cf1\ul\b\i Tabelul LOGININFO \cf0\ulnone\b0\i0 cu atributele IDC(\cf1 I\cf0 ),Username(\cf1 U\cf0 ),TIP(\cf1 T\cf0 ),Parola(\cf1 P\cf0 ),Email(\cf1 E\cf0 )\par
+\lang1033 LOGININFO[I,U,T,P,E]\par
+\f1\lang1032\'d3\f0\lang1033  = \{I->U , I->T , I->P , I->E , U->I , U->T , U->P , U->E, E->I , E->U , E->T , E->P \}\par
+\par
+S:\par
+M: I,U,E                  \par
+D:T,P\par
+Avem cheile candidat : I , U , E\par
+Atribute prime : I,U,E\par
+Atribute neprime :T,P\par
+\par
+\b\lang9 Observam ca toate atributele depind de cheie(I)\lang1033  stim inca de la punctele anterioare ca \cf1 Tabela LOGININFO \cf0 este in \cf1\i 1NF\cf0\i0  rezulta ca aceasta este in \cf1\i BCNF\cf0\i0 . \par
+\b0\par
+->\cf1\b\i Tabelul USERINFO \cf0\b0\i0 cu atributele IDC(\cf1 I\cf0 ), Nume(\cf1 N\cf0 ), Prenumne(\cf1 P\cf0 ), Data_Nastere(\cf1 D\cf0 ), Gen\cf1 (G\cf0 );\par
+USERINFO[I,N,P,D,G];\par
+SIGMA=\{I->N, I->P, I->D, I->G\};\par
+Posibile chei:I;\par
+Atribute prime:I;\par
+Atribute neprime:N,P,D,G;\par
 \lang9\par
 
-\pard\sl240\slmult1\par
-
-\pard\sa200\sl276\slmult1\par
+\pard\sl240\slmult1\b Observam ca avem dependentele netriviale :\lang1033 I->N, I->P, I->D, I->G dar I este cheie si stim inca de la punctele anterioare ca \cf1 Tabela USERINFO \cf0 este in \cf1\i 1NF\cf0\i0  rezulta ca aceasta este in \cf1\i BCNF\cf0\i0 . \par
 \par
+
+\pard\sl276\slmult1\b0 ->\cf1\b\i Tabelul COS \cf0\b0\i0 cu atributele IDC(\cf1 I\cf0 ),COD_PRODUS(\cf1 P\cf0 ),Cantitate(\cf1 C\cf0 )\par
+COS[I,P,C]\par
+SIGMA=\{IP->C\}\par
+S:IP\par
+M:\par
+D:C\par
+Avem cheia candidat IP ;\par
+Atribute prime :IP;\par
+Atribute neprime:C\par
+
+\pard\sl240\slmult1\lang9\par
+
+\pard\sa200\sl276\slmult1\b Observam ca avem dependentele netriviale :\lang1033 IP->C dar IP este cheie si stim inca de la punctele anterioare ca \cf1 Tabela COS \cf0 este in \cf1\i 1NF\cf0\i0  rezulta ca aceasta este in \cf1\i BCNF\cf0\i0 . \par
+
+\pard\sl276\slmult1\b0 ->\cf1\b\i Tabelul Adresa \cf0\b0\i0 cu atributele IDC(\cf1 I\cf0 ), Strada(\cf1 S\cf0 ), Bloc(\cf1 B\cf0 ),Numar_strada(\cf1 N\cf0 ),Oras (\cf1 O\cf0 ), Judet(J), Tara(T);\par
+Adresa[I,S,B,N,O,J,T];\par
+SIGMA=\{I->S, I->B, I->N, I->O, I->J, I->T\};\par
+Posibile chei:I;\par
+Atribute prime:I;\par
+Atribute neprime:S,B,N,O,J,T;\par
+
+\pard\sa200\sl276\slmult1\lang9\par
+\b Observam ca avem dependentele netriviale :\lang1033 I->S, I->B, I->N, I->O, I->J, I->T dar I este cheie si stim inca de la punctele anterioare ca \cf1 Tabela Adresa \cf0 este in \cf1\i 1NF\cf0\i0  rezulta ca aceasta este in \cf1\i BCNF\cf0\i0 . \par
+
+\pard\sl276\slmult1\cf1\i ->Tabelul Comentarii \cf0\b0\i0 cu atributele ID_COM(I),COD_PRODUS(P),Comentariu(C)\par
+Comentarii[I,P,C]\par
+SIGMA=\{I->P,I->C\}\par
+S:I\par
+M:\par
+D:P,C\par
+Avem cheia candidat : I\par
+Atribute prime : I \par
+Atribute neprime : P,C\par
+
+\pard\sa200\sl276\slmult1\lang9\par
+\b Observam ca avem dependentele netriviale :\lang1033 I->P,I->C dar I este cheie si stim inca de la punctele anterioare ca \cf1 Tabela Cometarii \cf0 este in \cf1\i 1NF\cf0\i0  rezulta ca aceasta este in \cf1\i BCNF\cf0\i0 . \par
+
+\pard\sl276\slmult1\cf1\i ->Tabelul Stoc \cf0\b0\i0 cu atributele Cod_Produs(P) si Cantitate(C);\par
+Stoc[P,C];\par
+SIGMA=\{P->C\};\par
+Posibile chei:P;\par
+Atribute prime:P;\par
+Atribute neprime:C;\par
+
+\pard\sa200\sl276\slmult1\lang9\par
+\b Observam ca avem dependentele netriviale :\lang1033 P->C dar \tab P este cheie si stim inca de la punctele anterioare ca \cf1 Tabela Stoc \cf0 este in \cf1\i 1NF\cf0\i0  rezulta ca aceasta este in \cf1\i BCNF\cf0\i0 . \par
+
+\pard\sl276\slmult1\cf1\i ->Tabelul Comenzi \cf0\b0\i0 cu atributele\cf2   IDC(I),COD_PRODUS(P),NR_COMANDA(N),CANTITATE(C),LIVRAT(L)\cf0\par
+Comenzi[I,P,N,C,L]\par
+SIGMA=\{N->I,N->P,N->C,N->L\}\par
+S:N\par
+D:\par
+M:I,P,C,L\par
+Deci avem cheia candidat N.\par
+Atribute prime : N\par
+Atribute neprime : I,P,C,L\par
+
+\pard\sa200\sl276\slmult1\lang9\par
+\b Observam ca avem dependentele netriviale :\lang1033 N->I,N->P,N->C,N->L dar I este cheie si stim inca de la punctele anterioare ca \cf1 Tabela Comenzi \cf0 este in \cf1\i 1NF\cf0\i0  rezulta ca aceasta este in \cf1\i BCNF\cf0\i0 . \b0\lang9\par
+
+\pard\sl276\slmult1\cf1\b\i\lang1033 ->Tabelul Produse \cf0\b0\i0 cu atributele Cod_Produs(C), Denumire(D), Autor(A), Editura(E), Gen(G), Pret(P);\par
+Produse[C,D,A,E,G,P]\par
+SIGMA=\{C->A, C->D, C->E, C->G, C->P\};\par
+Posibile chei:C;\par
+Atribute prime:C;\par
+Atribute neprime:D,A,E,G,P;\par
+
+\pard\sa200\sl276\slmult1\lang9\par
+\b Observam ca avem dependentele netriviale: \lang1033 C->A, C->D, C->E, C->G, C->P dar C este cheie si stim inca de la punctele anterioare ca \cf1 Tabela Produse \cf0 este in \cf1\i 1NF\cf0\i0  rezulta ca aceasta este in \cf1\i BCNF\cf0\i0 . \b0\lang9\par
+\cf1\b\lang1033 Deci cum toate tabelele sunt in forma normala BCNF  si baza de date era in 1NF si 2NF si 3NF, rezulta ca baza de date este in \fs32 BCNF.\cf0\b0\fs22\lang9\par
 }
  
