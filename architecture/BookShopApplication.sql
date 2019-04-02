@@ -226,6 +226,8 @@ DECLARE
   v_user VARCHAR2(150);
   v_found INT;
   v_tip VARCHAR2(15);
+  v_gen VARCHAR2(3);
+  v_data_nastere date;  
 
   BEGIN
 
@@ -251,10 +253,11 @@ DECLARE
       
       --FINISH POPULARE PRODUSE
       
-      --POPULARE LOGININFO , 1MILION ELEMENTE.
+      --POPULARE LOGININFO/USERSINFO , 1MILION ELEMENTE.
       FOR v_i IN 1..1000000 LOOP
             v_nume := lista_nume(TRUNC(DBMS_RANDOM.VALUE(0,lista_nume.count))+1);
             IF (DBMS_RANDOM.VALUE(0,100)<50) THEN   
+                  v_gen := 'F';
                   v_prenume1 := lista_prenume_fete(TRUNC(DBMS_RANDOM.VALUE(0,lista_prenume_fete.count))+1);
                   v_prenume := v_prenume1;
                   IF (DBMS_RANDOM.VALUE(0,100) < 50) THEN
@@ -266,6 +269,7 @@ DECLARE
                   END IF;
                   
             ELSE
+                    v_gen := 'M';
                     v_prenume1 := lista_prenume_baieti(TRUNC(DBMS_RANDOM.VALUE(0,lista_prenume_baieti.count))+1);
                     v_prenume := v_prenume1;
                     IF (DBMS_RANDOM.VALUE(0,100)<50) THEN
@@ -289,16 +293,17 @@ DECLARE
               END LOOP;    
               v_mail := v_mail || v_number;
               v_user := v_mail;
+              v_data_nastere := TO_DATE('01-01-1974','MM-DD-YYYY')+TRUNC(DBMS_RANDOM.VALUE(0,365));
               IF (TRUNC(DBMS_RANDOM.VALUE(0,2))=0) THEN v_mail := v_mail || '@gmail.com';
                 ELSE v_mail := v_mail || '@yahoo.com';
               END IF;
               v_tip := lista_tip(TRUNC(DBMS_RANDOM.VALUE(0,lista_tip.count))+1);
               INSERT INTO LOGININFO VALUES (v_i,v_user,v_parola,v_mail,v_tip);
+              INSERT INTO USERSINFO VALUES (v_i,v_nume,v_prenume,v_data_nastere,v_gen);
     END LOOP;
     
-    --FINISH POPULARE LOGININFO
 END;
  
-SELECT * FROM PRODUSE;
+SELECT * FROM LOGININFO ORDER BY IDC;
 
 
