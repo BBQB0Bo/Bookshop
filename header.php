@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['nume']))
+    {
+        header("Location: index.php?error=login");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +19,7 @@
     <link href="css/responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -57,7 +66,7 @@
                                 <li><a href="wishlist.php"><i class="fa fa-star"></i> Wishlist</a></li>
                                 <li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                 <li><a href="orders.php"><i class="fa fa-list"></i> Orders</a></li>
-                                <li><a href="index.php"><i class="fa fa-lock"></i> Logout</a></li>
+                                <li><a href="controller/logout.php"><i class="fa fa-lock"></i> Logout</a></li>
                             </ul>
                         </div>
                     </div>
